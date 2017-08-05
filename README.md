@@ -24,6 +24,12 @@ Or install it yourself as:
 
 ## Usage
 
+Initialize the language translator object with the source and destination languages, formatted with the [ISO_639-3 code](http://en.wikipedia.org/wiki/List_of_ISO_639-3_codes).
+
+```ruby
+translator = Glosbe::Language.new(to: "eng", from: "nld")
+```
+
 TODO
 
 ## Development
