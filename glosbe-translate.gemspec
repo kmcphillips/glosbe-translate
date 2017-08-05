@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "glosbe/translate/version"
+require "glosbe/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "glosbe-translate"
-  spec.version       = Glosbe::Translate::VERSION
+  spec.version       = Glosbe::VERSION
   spec.authors       = ["Kevin McPhillips"]
   spec.email         = ["github@kevinmcphillips.ca"]
 
