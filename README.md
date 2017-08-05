@@ -1,5 +1,7 @@
 # Glosbe translate
 
+[![Build Status](https://travis-ci.org/kmcphillips/glosbe-translate.svg?branch=master)](https://travis-ci.org/kmcphillips/glosbe-translate)
+
 Wrapper around the [Glosbe](https://glosbe.com) online multilingual dictionary. Translate and get definitions of words between languages.
 
 See a [full list of supported languages](https://glosbe.com/all-languages).
