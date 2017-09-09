@@ -9,6 +9,13 @@ RSpec.describe Glosbe::Response do
     let(:response) { language.response("hello") }
   end
 
+  shared_context "no results" do
+    use_vcr_cassette "translate_eng_fr_xxxxx"
+
+    let(:language) { Glosbe::Language.new(from: :eng, to: :fr) }
+    let(:response) { language.response("xxxxx") }
+  end
+
   describe "#initialize" do
     it "should be tested"
   end
@@ -22,38 +29,74 @@ RSpec.describe Glosbe::Response do
   end
 
   describe "#to" do
-    include_context "success"
+    context "success" do
+      include_context "success"
 
-    it "parses the to out of the response" do
-      expect(response.to).to eq("fr")
+      it "parses the to out of the response" do
+        expect(response.to).to eq("fr")
+      end
+    end
+
+    context "no results" do
+      include_context "no results"
+
+      it "parses the to out of the response" do
+        expect(response.to).to eq("fr")
+      end
     end
   end
 
   describe "#success?" do
-    include_context "success"
+    context "success" do
+      include_context "success"
 
-    it "looks at the result" do
-      expect(response.success?).to eq(true)
+      it "looks at the result field" do
+        expect(response.success?).to eq(true)
+      end
+    end
+
+    context "no results" do
+      include_context "no results"
+
+      it "looks at the result field" do
+        expect(response.success?).to eq(true)
+      end
     end
   end
 
   describe "#found?" do
-    include_context "success"
+    context "success" do
+      include_context "success"
 
-    it "looks at the success and number of results" do
-      expect(response.found?).to eq(true)
+      it "looks at the success and number of results" do
+        expect(response.found?).to eq(true)
+      end
     end
 
-    it "with no results found"
+    context "no results" do
+      include_context "no results"
+
+      it "looks at the success and number of results" do
+        expect(response.found?).to eq(false)
+      end
+    end
   end
 
   describe "#results" do
-    include_context "success"
+    context "success" do
+      include_context "success"
 
-    it "parses out the results" do
-      expect(response.results).to_not be_empty
+      it "parses out the results" do
+        expect(response.results).to_not be_empty
+      end
     end
 
-    it "parses the results"
+    context "no results" do
+      include_context "no results"
+
+      it "parses out the results" do
+        expect(response.results).to be_empty
+      end
+    end
   end
 end
