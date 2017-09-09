@@ -93,6 +93,16 @@ RSpec.describe Glosbe::Language do
           expect(response.results).to be_empty
         end
       end
+
+      context "success small result", vcr: { cassette_name: "translate_eng_fr_star" } do
+        let(:response) { language.response("*") }
+
+        it "creates a response object" do
+          expect(response).to be_an_instance_of(Glosbe::Response)
+          expect(response).to be_success
+          expect(response.results).to_not be_empty
+        end
+      end
     end
   end
 end

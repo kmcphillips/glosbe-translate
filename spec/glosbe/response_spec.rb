@@ -12,6 +12,10 @@ RSpec.describe Glosbe::Response do
     Glosbe::Response.new(response_for_cassette("translate_eng_fr_hello"), ok: true)
   end
 
+  let(:response_success_small_result) do
+    Glosbe::Response.new(response_for_cassette("translate_eng_fr_star"), ok: true)
+  end
+
   let(:response_no_results) do
     Glosbe::Response.new(response_for_cassette("translate_eng_fr_xxxxx"), ok: true)
   end
@@ -55,6 +59,24 @@ RSpec.describe Glosbe::Response do
 
     it "on bad request does not have anything to parse" do
       expect(response_bad_request.to).to be_nil
+    end
+  end
+
+  describe "#phrase" do
+    it "on success parses the to out of the response" do
+      expect(response_success.phrase).to eq("hello")
+    end
+
+    it "on success for a small result parses the to out of the response" do
+      expect(response_success_small_result.phrase).to eq("*")
+    end
+
+    it "on no results parses the to out of the response" do
+      expect(response_no_results.phrase).to eq("xxxxx")
+    end
+
+    it "on bad request does not have anything to parse" do
+      expect(response_bad_request.phrase).to be_nil
     end
   end
 
@@ -104,6 +126,10 @@ RSpec.describe Glosbe::Response do
     context "on success" do
       it "has results" do
         expect(response_success.results).to_not be_empty
+      end
+
+      it "has results for a small set" do
+        expect(response_success_small_result.results).to_not be_empty
       end
 
       it "has an array of results"
