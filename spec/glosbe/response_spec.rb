@@ -159,4 +159,8 @@ RSpec.describe Glosbe::Response do
       expect(response_bad_request.authors).to eq([])
     end
   end
+
+  context "real data and content" do
+    it "should check the data end to end for a definition and lookup"
+  end
 end
