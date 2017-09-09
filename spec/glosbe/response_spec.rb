@@ -3,15 +3,11 @@ require "spec_helper"
 
 RSpec.describe Glosbe::Response do
   shared_context "success" do
-    use_vcr_cassette "translate_eng_fr_hello"
-
     let(:language) { Glosbe::Language.new(from: :eng, to: :fr) }
     let(:response) { language.response("hello") }
   end
 
   shared_context "no results" do
-    use_vcr_cassette "translate_eng_fr_xxxxx"
-
     let(:language) { Glosbe::Language.new(from: :eng, to: :fr) }
     let(:response) { language.response("xxxxx") }
   end
@@ -26,7 +22,7 @@ RSpec.describe Glosbe::Response do
     end
   end
 
-  describe "#from" do
+  describe "#from", vcr: { cassette_name: "translate_eng_fr_hello" } do
     include_context "success"
 
     it "parses the from out of the response" do
@@ -35,7 +31,7 @@ RSpec.describe Glosbe::Response do
   end
 
   describe "#to" do
-    context "success" do
+    context "success", vcr: { cassette_name: "translate_eng_fr_hello" } do
       include_context "success"
 
       it "parses the to out of the response" do
@@ -43,7 +39,7 @@ RSpec.describe Glosbe::Response do
       end
     end
 
-    context "no results" do
+    context "no results", vcr: { cassette_name: "translate_eng_fr_xxxxx" } do
       include_context "no results"
 
       it "parses the to out of the response" do
@@ -53,7 +49,7 @@ RSpec.describe Glosbe::Response do
   end
 
   describe "#success?" do
-    context "success" do
+    context "success", vcr: { cassette_name: "translate_eng_fr_hello" } do
       include_context "success"
 
       it "looks at the result field" do
@@ -61,7 +57,7 @@ RSpec.describe Glosbe::Response do
       end
     end
 
-    context "no results" do
+    context "no results", vcr: { cassette_name: "translate_eng_fr_xxxxx" } do
       include_context "no results"
 
       it "looks at the result field" do
@@ -71,7 +67,7 @@ RSpec.describe Glosbe::Response do
   end
 
   describe "#found?" do
-    context "success" do
+    context "success", vcr: { cassette_name: "translate_eng_fr_hello" } do
       include_context "success"
 
       it "looks at the success and number of results" do
@@ -79,7 +75,7 @@ RSpec.describe Glosbe::Response do
       end
     end
 
-    context "no results" do
+    context "no results", vcr: { cassette_name: "translate_eng_fr_xxxxx" } do
       include_context "no results"
 
       it "looks at the success and number of results" do
@@ -89,7 +85,7 @@ RSpec.describe Glosbe::Response do
   end
 
   describe "#results" do
-    context "success" do
+    context "success", vcr: { cassette_name: "translate_eng_fr_hello" } do
       include_context "success"
 
       it "parses out the results" do
@@ -97,7 +93,7 @@ RSpec.describe Glosbe::Response do
       end
     end
 
-    context "no results" do
+    context "no results", vcr: { cassette_name: "translate_eng_fr_xxxxx" } do
       include_context "no results"
 
       it "parses out the results" do

@@ -60,10 +60,8 @@ RSpec.describe Glosbe::Language do
     end
   end
 
-  describe "#response" do
+  describe "#response", vcr: { cassette_name: "translate_eng_fr_hello" } do
     let(:language) { Glosbe::Language.new(from: :eng, to: :fr) }
-
-    use_vcr_cassette "translate_eng_fr_hello"
 
     it "builds a response from the HTTP request to /translate" do
       expect(language.response("hello")).to be_an_instance_of(Glosbe::Response)
