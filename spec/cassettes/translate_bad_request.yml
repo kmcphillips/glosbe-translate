@@ -1,0 +1,135 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://glosbe.com/gapi/translate?dest=fr&format=json&from=eng&phrase=bad&pretty=true
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 400
+      message: ''
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sat, 09 Sep 2017 19:17:32 GMT
+      Content-Type:
+      - text/html;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      Content-Language:
+      - en
+    body:
+      encoding: ASCII-8BIT
+      string: "<!DOCTYPE HTML SYSTEM \"about:legacy-compat\">\n<html lang=\"en\"><head><meta
+        charset=\"utf-8\"/><meta content=\"user-scalable=no, width=device-width, initial-scale=1.0\"
+        name=\"viewport\"/><meta content=\"IE=edge\" http-equiv=\"X-UA-Compatible\"/><meta
+        content=\"&amp;copy; 2013 Glosbe Pafieniuk i Stawinski sp. j.\" name=\"copyright\"/><meta
+        content=\"SKYPE_TOOLBAR_PARSER_COMPATIBLE\" name=\"SKYPE_TOOLBAR\"/><meta
+        value=\"notranslate\" name=\"google\"/><meta content=\"\" id=\"X-fromLang\"
+        name=\"X-fromLang\"/><meta content=\"false\" id=\"X-topword\" name=\"X-topword\"/><meta
+        content=\"\" id=\"X-destLang\" name=\"X-destLang\"/><meta content=\"\" id=\"X-phrase\"
+        name=\"X-phrase\"/><link href=\"/resources/apple-touch-icon-57x57.png?v=2\"
+        sizes=\"57x57\" rel=\"apple-touch-icon\"/><link href=\"/resources/apple-touch-icon-60x60.png?v=2\"
+        sizes=\"60x60\" rel=\"apple-touch-icon\"/><link href=\"/resources/apple-touch-icon-72x72.png?v=2\"
+        sizes=\"72x72\" rel=\"apple-touch-icon\"/><link href=\"/resources/apple-touch-icon-76x76.png?v=2\"
+        sizes=\"76x76\" rel=\"apple-touch-icon\"/><link href=\"/resources/apple-touch-icon-114x114.png?v=2\"
+        sizes=\"114x114\" rel=\"apple-touch-icon\"/><link href=\"/resources/apple-touch-icon-120x120.png?v=2\"
+        sizes=\"120x120\" rel=\"apple-touch-icon\"/><link href=\"/resources/apple-touch-icon-144x144.png?v=2\"
+        sizes=\"144x144\" rel=\"apple-touch-icon\"/><link href=\"/resources/apple-touch-icon-152x152.png?v=2\"
+        sizes=\"152x152\" rel=\"apple-touch-icon\"/><link href=\"/resources/apple-touch-icon-180x180.png?v=2\"
+        sizes=\"180x180\" rel=\"apple-touch-icon\"/><link sizes=\"32x32\" href=\"/resources/favicon-32x32.png?v=2\"
+        type=\"image/png\" rel=\"icon\"/><link sizes=\"192x192\" href=\"/resources/android-chrome-192x192.png?v=2\"
+        type=\"image/png\" rel=\"icon\"/><link sizes=\"96x96\" href=\"/resources/favicon-96x96.png?v=2\"
+        type=\"image/png\" rel=\"icon\"/><link sizes=\"16x16\" href=\"/resources/favicon-16x16.png?v=2\"
+        type=\"image/png\" rel=\"icon\"/><link href=\"/resources/manifest.json?v=2\"
+        rel=\"manifest\"/><link color=\"#5bbad5\" href=\"/resources/safari-pinned-tab.svg?v=2\"
+        rel=\"mask-icon\"/><meta content=\"Glosbe\" name=\"apple-mobile-web-app-title\"/><meta
+        content=\"Glosbe\" name=\"application-name\"/><meta content=\"#da532c\" name=\"msapplication-TileColor\"/><meta
+        content=\"/resources/mstile-144x144.png?v=2\" name=\"msapplication-TileImage\"/><meta
+        content=\"#ffffff\" name=\"theme-color\"/><script>\n      window.siteUrl =
+        \"/\";\n      window.executionContext = \"/\";\n      window.siteHost = \"\";\n
+        \     window.logged=false;\n      window.phrasesAutosuggestUrl = \"/ajax/phrasesAutosuggest\";\n
+        \     window.hide_a_d = false;\n      window.google_analytics_uacct = \"UA-13110733-11\";\n
+        \   </script><meta content=\"website\" property=\"og:type\"/><meta content=\"https://glosbe.com/fb_logo.png\"
+        property=\"og:image\"/><meta content=\"https://glosbe.com\" property=\"og:url\"/><meta
+        content=\"Glosbe\" property=\"og:site_name\"/><meta content=\"100009366509468,1652235182\"
+        property=\"fb:admins\"/><meta content=\"270673349614237\" property=\"fb:app_id\"/><link
+        rel=\"publisher\" href=\"https://plus.google.com/115615389468755918533\"/><script>\n
+        \ window.fbeaver = {};\n  window.fbeaver.scriptsToLoadAfterInit = [];\n  function
+        loadAfterInit(scriptIdOrUrl) {\n\t  window.fbeaver.scriptsToLoadAfterInit.push(scriptIdOrUrl);\n
+        \ } \n </script><script>var adsenseAdClientId = \"\", isVulgar = hide_a_d
+        || false;</script><script>(function(){window.onerror=function(a,g,e,f,l){window.onerror=null;try{if(window.XMLHttpRequest){var
+        c=new XMLHttpRequest;c.open(\"GET\",\"/jserr?e=\"+encodeURIComponent(a)+\"&p=\"+encodeURIComponent(window.location.toString())+\"&a=\"+encodeURIComponent(navigator.userAgent)+\"&u=\"+encodeURIComponent(g)+\"&l=\"+encodeURIComponent(e)+\"&s=\"+encodeURIComponent(l),!0);c.send()}}catch(d){\"console\"in
+        window&&console.error(d)}}})();(function(){var a={},g={},e=0;window.console=window.console||{log:function(){},debug:function(){},error:function(){}};var
+        f=1200,l=900;\"number\"==typeof window.innerWidth?(f=window.innerWidth,l=window.innerHeight):document.documentElement&&(document.documentElement.clientWidth||document.documentElement.clientHeight)?(f=document.documentElement.clientWidth,l=document.documentElement.clientHeight):document.body&&(document.body.clientWidth||document.body.clientHeight)&&(f=document.body.clientWidth,l=\ndocument.body.clientHeight);window.glosbeads=function(c){\"renderer\"in
+        c&&(a[c.n]=c.r);\"config\"in c&&(g=c.config);if(\"place\"in c&&!(3<=e)){var
+        d=c.place;if(d in g){c=c.container;var h=c.offsetTop,m=g[d];if(!(m.p<Math.random())){for(var
+        d=null,k=0;k<m.c.length;k++){var b=m.c[k];\"b\"in b&&b.b>l||\"a\"in b&&b.a>f||\"c\"in
+        b&&b.c<f||\"d\"in b&&b.d>h||!(null==d||d.a<b.a||d.a==b.a&&d.b<b.b)||(d=b)}if(null!=d){h=null;for(k=0;k<d.u.length;k++)if(b=d.u[k],(!hide_a_d||\"adsense\"!=b.t.toLowerCase())&&b.p>=Math.random()&&\nb.s){h=b;break}null!=h&&h.t
+        in a&&(c.setAttribute(\"style\",\"width:\"+h.w+\"px;height:\"+h.h+\"px;margin:auto;margin-bottom:10px;\"),c.setAttribute(\"class\",\"adContainer\"),a[h.t].call(this,h,c),e++)}}}}}})();(function(){var
+        a=window.isVulgar;(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:\"ca-pub-3314662261394816\",enable_page_level_ads:!0});window.glosbeads({config:{topBanner:{p:100,c:[{a:970,b:300,u:[{p:.33,t:\"adSense\",w:970,h:90,i:\"9460592010\",f:\"auto\",s:!a},{p:.33,t:\"adSense\",w:970,h:90,i:\"2264628279\",s:!a},{p:100,t:\"adSense\",w:728,h:90,i:\"1168743101\",s:!a},{p:100,t:\"criteo\",w:970,h:90,i:163369,s:a}]},{a:728,u:[{p:100,t:\"adSense\",w:728,h:90,i:\"1168743101\",s:!a},{p:100,t:\"criteo\",w:728,\nh:90,i:158874,s:a}]},{a:468,u:[{p:100,t:\"adSense\",w:468,h:60,i:\"4006213617\",s:!a},{p:100,t:\"criteo\",w:468,h:60,i:163515,s:a}]},{a:320,c:467,u:[{p:100,t:\"adSense\",w:320,h:100,i:\"5517970012\",s:!a},{p:100,t:\"criteo\",w:320,h:50,i:163517,s:a}]},{a:234,u:[{p:100,t:\"adSense\",w:234,h:60,i:\"4719394011\",s:!a}]},{a:720,u:[{p:100,t:\"adSense\",w:728,h:90,i:\"1168743101\",s:!a}]}]},examplesBanner:{p:100,c:[{a:468,d:800,c:767,u:[{p:100,t:\"adSense\",w:320,h:100,i:\"5517970012\",s:!a}]},{c:467,d:600,a:320,u:[{p:100,t:\"adSense\",\nw:320,h:100,i:\"5517970012\",s:!a}]},{c:319,d:500,a:234,u:[{p:100,t:\"adSense\",w:234,h:60,i:\"4719394011\",s:!a}]}]},wordDetailsPageBottom:{p:100,c:[{a:468,c:767,u:[{p:100,t:\"adSense\",w:336,h:280,i:\"7469147210\",s:!a}]},{a:320,c:467,u:[{p:100,t:\"adSense\",w:300,h:250,i:\"3975507746\",s:!a}]},{a:234,c:728,u:[{p:100,t:\"adSense\",w:234,h:60,i:\"4719394011\",s:!a}]}]},rightSidebarFirstBanner:{p:100,c:[{a:1320,u:[{p:100,t:\"adSense\",w:336,h:280,i:\"7469147210\",s:!a},{p:100,t:\"criteo\",w:300,h:600,i:\"163737\",s:a}]},{a:850,\nu:[{p:100,t:\"adSense\",w:160,h:600,i:\"8877179519\",s:!a},{p:100,t:\"criteo\",w:160,h:600,i:\"159038\",s:a}]},{a:768,u:[{p:100,t:\"adSense\",w:120,h:600,i:\"6783053219\",s:!a},{p:100,t:\"criteo\",w:120,h:600,i:\"163686\",s:a}]}]},rightSidebarSecondBanner:{p:100,c:[{a:1320,u:[{p:100,t:\"adSense\",w:336,h:280,i:\"2759746016\",s:!a}]},{a:850,u:[{p:100,t:\"adSense\",w:160,h:600,i:\"5033807475\",s:!a},{p:100,t:\"criteo\",w:160,h:600,i:\"159038\",s:a}]},{a:768,u:[{p:100,t:\"adSense\",w:120,h:600,i:\"6783053219\",s:!a},{p:100,t:\"criteo\",\nw:120,h:600,i:\"163686\",s:a}]}]}}})})();(function(){window.glosbeads({renderer:1,n:\"adSense\",r:function(a){var
+        g=[];a.c&&g.push(a.c);document.write(\"<ins class='adsbygoogle' style='display:inline-block;width:\"+a.w+\"px;height:\"+a.h+\"px'
+        data-ad-client='\"+window.adsenseAdClientId+\"' data-ad-slot='\"+a.i+(a.f?\"'
+        data-ad-format='\"+a.f:\"\")+\"'></ins>\");(window.adsbygoogle=window.adsbygoogle||[]).push({params:{google_ad_channel:g.join(\"+\")}})}})})();(function(){window.glosbeads({renderer:1,n:\"criteo\",r:function(a,g){var
+        e=\"cto_async_\"+a.i;document.write(\"<div id='\"+e+\"' margin='0px' style='width:
+        \"+a.w+\"px;height:\"+a.h+\"px'></div>\");var f=document.createElement(\"script\");f.setAttribute(\"async\",\"true\");f.src=\"//cas.criteo.com/delivery/ajs.php?zoneid=\"+a.i+\"&containerid=\"+e+\"&cb=\"+Math.floor(99999999999*Math.random())+\"&loc=\"+escape(window.location)+(document.referrer?\"&referer=\"+encodeURIComponent(document.referrer):\"\").substring(0,2E3);e=document.getElementsByTagName(\"script\")[0];\ne.parentNode.insertBefore(f,e)}})})();\n</script><noscript><style>.jsonly{display:none
+        !important}.nojsvisible{display:block !important}</style></noscript><link
+        href=\"/resources/css/bundle-379c0b24c8.min.css\" type=\"text/css\" rel=\"stylesheet\"/>\n
+        \    <!--[if IE 7]>      \n\t  <link rel=\"stylesheet\" href=\"/resources/css-conditional/fontello-ie7.css\"/>\n\t
+        <![endif]-->\n     <!--[if lt IE 9]>\n      <script src=\"//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js\"></script>\n
+        \     <script src=\"//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js\"></script>\n
+        \    <![endif]-->\n    <script src=\"//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js\"
+        async=\"async\"></script></head><body><div class=\"navbar navbar-inverse headerNavbar\"><div
+        class=\"navbar-inner\"><div id=\"headerContainer\" class=\"container\"><a
+        data-target=\".nav-collapse\" data-toggle=\"collapse\" class=\"btn btn-navbar
+        jsonly\"><span class=\"fa-menu\"></span></a><a id=\"logo\" class=\"brand sprite
+        sprite-glosbe3_logo\" href=\"/\"><span>Glosbe</span></a><div id=\"topCollapseNavContainer\"
+        class=\"nav-collapse collapse\"><ul class=\"nav pull-right\"><li><div><a rel=\"nofollow\"
+        class=\"btn dropdown-toggle btn-small btn-inverse\" href=\"/locale\"><span></span></a></div></li><li
+        id=\"nav-recent-dictionaries-link\"><a rel=\"nofollow\" href=\"/settings\"><span
+        class=\"fa-cog\">&nbsp;</span></a></li><li><a rel=\"nofollow\" class=\"navbar-link
+        \" href=\"/loginRedirectInternal?returnurl=http%3a%2f%2fglosbe.com%2fgapi%2ftranslate%3ffrom%3deng%26dest%3dxxxx%26phrase%3dhello%26format%3djson%26pretty%3dtrue\">Log
+        in</a></li></ul></div></div></div></div><div class=\"container\"><div version=\"2.0\"><h1>Language
+        not recognized</h1><p>The language (xxxx) was not recognized. Only ISO 693-1
+        and ISO 693-3 language codes are valid.</p></div></div><footer class=\"footer\"><div
+        class=\"container\"><nav><div class=\"row-fluid\"><div class=\"span3\"><div>Links</div><a
+        href=\"/\">Home</a><br/><a href=\"/all-dictionaries\">All dictionaries:\n\t\t\t\t\t\t\t
+        </a><br/><a href=\"/all-languages\">All languages</a><br/><a href=\"/transliteration\">Transliteration</a><br/><a
+        href=\"/locale\">Interface language</a></div><div class=\"span3\"><div>Advanced</div><a
+        rel=\"nofollow\" href=\"/recent\">Recent changes</a><br/><a rel=\"nofollow\"
+        href=\"/upload\">Upload dictionary</a><br/><a rel=\"nofollow\" href=\"/a-api\">Glosbe
+        API</a><br/><a href=\"/reader-faq\">Reader FAQ</a><br/><a href=\"/editor-faq\">Editor
+        FAQ</a><br/></div><div class=\"span3\"><div>About</div><a rel=\"nofollow\"
+        href=\"/about\">About us</a><br/><a rel=\"nofollow\" href=\"/partners\">Partners</a><br/><a
+        href=\"http://blog.glosbe.com\">Blog</a><br/><a rel=\"nofollow\" href=\"/cookies\">Cookies</a><br/><a
+        rel=\"nofollow\" href=\"/a-privacy-policy\">Privacy policy</a><br/><a rel=\"nofollow\"
+        href=\"/contact\">Contact</a><br/></div><div class=\"span3\"><a href=\"https://play.google.com/store/apps/details?id=com.cloud_inside.mobile.glosbedictionary\"
+        title=\"Glosbe Android App\" class=\"sprite sprite-en_generic_rgb_wo_45\"
+        id=\"androidBadge\"></a><a href=\"https://itunes.apple.com/us/app/glosbe-dictionary/id1240097549?mt=8\"
+        title=\"iOS Glosbe App\" id=\"iosBadge\"/></div></div></nav></div></footer><script
+        async=\"async\" src=\"/resources/js/bundle-3573a38e1c.min.js\"></script><!--
+        host:  ; --></body></html>"
+    http_version:
+  recorded_at: Sat, 09 Sep 2017 19:17:32 GMT
+recorded_with: VCR 3.0.3
