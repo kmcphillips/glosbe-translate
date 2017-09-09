@@ -59,4 +59,14 @@ RSpec.describe Glosbe::Language do
       expect(Glosbe::Language.new(from: "nld", to: "fr").to).to eq("fr")
     end
   end
+
+  describe "#response" do
+    let(:language) { Glosbe::Language.new(from: :eng, to: :fr) }
+
+    use_vcr_cassette "translate_eng_fr_hello"
+
+    it "builds a response from the HTTP request to /translate" do
+      expect(language.response("hello")).to be_an_instance_of(Glosbe::Response)
+    end
+  end
 end
