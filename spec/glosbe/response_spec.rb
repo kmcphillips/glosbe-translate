@@ -137,4 +137,26 @@ RSpec.describe Glosbe::Response do
       expect(response_bad_request.results).to eq([])
     end
   end
+
+  describe "#authors" do
+    context "on success" do
+      it "has authors" do
+        expect(response_success.authors).to_not be_empty
+        expect(response_success.authors.first).to be_an_instance_of(Glosbe::Author)
+      end
+
+      it "has authors for a small set" do
+        expect(response_success.authors).to_not be_empty
+        expect(response_success.authors.first).to be_an_instance_of(Glosbe::Author)
+      end
+    end
+
+    it "on no authors is an empty array" do
+      expect(response_no_results.authors).to eq([])
+    end
+
+    it "on bad request is an empty array" do
+      expect(response_bad_request.authors).to eq([])
+    end
+  end
 end

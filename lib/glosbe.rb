@@ -7,4 +7,5 @@ module Glosbe
 end
 
 require "glosbe/language"
+require "glosbe/author"
 require "glosbe/response"

@@ -32,4 +32,14 @@ class Glosbe::Response
   def results
     success? ? body["tuc"] : []
   end
+
+  def authors
+    @authors ||= begin
+      if found?
+        body["authors"].map { |data| Glosbe::Author.new(data[1]) }
+      else
+        []
+      end
+    end
+  end
 end
