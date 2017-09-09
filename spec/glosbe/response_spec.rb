@@ -17,7 +17,13 @@ RSpec.describe Glosbe::Response do
   end
 
   describe "#initialize" do
-    it "should be tested"
+    let(:body) { { key: "value" } }
+    let(:response) { Glosbe::Response.new(body, ok: "yes") }
+
+    it "passes in the body and the ok: param" do
+      expect(response.body).to eq(body)
+      expect(response.ok).to eq(true)
+    end
   end
 
   describe "#from" do

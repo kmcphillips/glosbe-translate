@@ -11,7 +11,10 @@ class Glosbe::Language
   end
 
   def response(phrase)
-    Glosbe::Response.new(self.class.get("/translate", query: query_for(phrase)))
+    http = self.class.get("/translate", query: query_for(phrase))
+    body = http.ok? ? http.parsed_response : nil
+
+    Glosbe::Response.new(body, ok: http.ok?)
   end
 
   private

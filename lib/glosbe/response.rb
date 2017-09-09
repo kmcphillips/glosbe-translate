@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 class Glosbe::Response
-  attr_reader :from, :to, :phrase, :sources, :errors
+  attr_reader :ok, :body
 
-  def initialize(http_response)
-    @http = http_response
+  def initialize(body, ok:)
+    @body = body
+    @ok = !!ok
   end
+
+  alias_method :ok?, :ok
 
   def from
     body["from"]
@@ -15,7 +18,7 @@ class Glosbe::Response
   end
 
   def success?
-    body["result"] == "ok"
+    ok? && body["result"] == "ok"
   end
 
   def found?
@@ -24,11 +27,5 @@ class Glosbe::Response
 
   def results
     body["tuc"]
-  end
-
-  private
-
-  def body
-    @http.parsed_response
   end
 end
