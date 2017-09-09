@@ -2,14 +2,22 @@
 require "spec_helper"
 
 RSpec.describe Glosbe::Response do
-  shared_context "success" do
-    let(:language) { Glosbe::Language.new(from: :eng, to: :fr) }
-    let(:response) { language.response("hello") }
+  def response_for_cassette(cassette)
+    VCR.use_cassette(cassette) do
+      JSON.parse(VCR.current_cassette.http_interactions.interactions.first.response.body)
+    end
   end
 
-  shared_context "no results" do
-    let(:language) { Glosbe::Language.new(from: :eng, to: :fr) }
-    let(:response) { language.response("xxxxx") }
+  let(:response_success) do
+    Glosbe::Response.new(response_for_cassette("translate_eng_fr_hello"), ok: true)
+  end
+
+  let(:response_no_results) do
+    Glosbe::Response.new(response_for_cassette("translate_eng_fr_xxxxx"), ok: true)
+  end
+
+  let(:response_bad_request) do
+    Glosbe::Response.new("<html>Oh no!</html>", ok: false)
   end
 
   describe "#initialize" do
@@ -22,83 +30,91 @@ RSpec.describe Glosbe::Response do
     end
   end
 
-  describe "#from", vcr: { cassette_name: "translate_eng_fr_hello" } do
-    include_context "success"
+  describe "#from" do
+    it "on success parses the from out of the response" do
+      expect(response_success.from).to eq("en")
+    end
 
-    it "parses the from out of the response" do
-      expect(response.from).to eq("en")
+    it "on no results parses the from out of the response" do
+      expect(response_no_results.from).to eq("en")
+    end
+
+    it "on bad request does not have anything to parse" do
+      expect(response_bad_request.from).to be_nil
     end
   end
 
   describe "#to" do
-    context "success", vcr: { cassette_name: "translate_eng_fr_hello" } do
-      include_context "success"
-
-      it "parses the to out of the response" do
-        expect(response.to).to eq("fr")
-      end
+    it "on success parses the to out of the response" do
+      expect(response_success.to).to eq("fr")
     end
 
-    context "no results", vcr: { cassette_name: "translate_eng_fr_xxxxx" } do
-      include_context "no results"
+    it "on no results parses the to out of the response" do
+      expect(response_no_results.to).to eq("fr")
+    end
 
-      it "parses the to out of the response" do
-        expect(response.to).to eq("fr")
-      end
+    it "on bad request does not have anything to parse" do
+      expect(response_bad_request.to).to be_nil
     end
   end
 
   describe "#success?" do
-    context "success", vcr: { cassette_name: "translate_eng_fr_hello" } do
-      include_context "success"
-
-      it "looks at the result field" do
-        expect(response.success?).to eq(true)
-      end
+    it "is false when ok: is false" do
+      expect(Glosbe::Response.new({"result" => "ok"}, ok: false)).to_not be_success
     end
 
-    context "no results", vcr: { cassette_name: "translate_eng_fr_xxxxx" } do
-      include_context "no results"
+    it "is false when 'result' is not 'ok'" do
+      expect(Glosbe::Response.new({"result" => "ohyes"}, ok: true)).to_not be_success
+    end
 
-      it "looks at the result field" do
-        expect(response.success?).to eq(true)
+    it "is true when both ok: is true and 'result' is ok" do
+      expect(Glosbe::Response.new({"result" => "ok"}, ok: true)).to be_success
+    end
+
+    context "with real request data" do
+      it "on success is true" do
+        expect(response_success).to be_success
+      end
+
+      it "on no results is true" do
+        expect(response_no_results).to be_success
+      end
+
+      it "on bad request is false" do
+        expect(response_bad_request).to_not be_success
       end
     end
   end
 
   describe "#found?" do
-    context "success", vcr: { cassette_name: "translate_eng_fr_hello" } do
-      include_context "success"
-
-      it "looks at the success and number of results" do
-        expect(response.found?).to eq(true)
-      end
+    it "on success is true" do
+      expect(response_success).to be_found
     end
 
-    context "no results", vcr: { cassette_name: "translate_eng_fr_xxxxx" } do
-      include_context "no results"
+    it "on no results is false" do
+      expect(response_no_results).to_not be_found
+    end
 
-      it "looks at the success and number of results" do
-        expect(response.found?).to eq(false)
-      end
+    it "on bad request is false" do
+      expect(response_bad_request).to_not be_found
     end
   end
 
   describe "#results" do
-    context "success", vcr: { cassette_name: "translate_eng_fr_hello" } do
-      include_context "success"
-
-      it "parses out the results" do
-        expect(response.results).to_not be_empty
+    context "on success" do
+      it "has results" do
+        expect(response_success.results).to_not be_empty
       end
+
+      it "has an array of results"
     end
 
-    context "no results", vcr: { cassette_name: "translate_eng_fr_xxxxx" } do
-      include_context "no results"
+    it "on no results is an empty array" do
+      expect(response_no_results.results).to eq([])
+    end
 
-      it "parses out the results" do
-        expect(response.results).to be_empty
-      end
+    it "on bad request is an empty array" do
+      expect(response_bad_request.results).to eq([])
     end
   end
 end

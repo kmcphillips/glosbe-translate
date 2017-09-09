@@ -26,6 +26,6 @@ class Glosbe::Response
   end
 
   def results
-    body["tuc"]
+    success? ? body["tuc"] : []
   end
 end

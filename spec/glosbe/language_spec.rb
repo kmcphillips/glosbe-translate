@@ -60,11 +60,39 @@ RSpec.describe Glosbe::Language do
     end
   end
 
-  describe "#response", vcr: { cassette_name: "translate_eng_fr_hello" } do
+  describe "#response" do
     let(:language) { Glosbe::Language.new(from: :eng, to: :fr) }
 
-    it "builds a response from the HTTP request to /translate" do
-      expect(language.response("hello")).to be_an_instance_of(Glosbe::Response)
+    context "with HTTP requests and response to /translate" do
+      context "success", vcr: { cassette_name: "translate_eng_fr_hello" } do
+        let(:response) { language.response("hello") }
+
+        it "creates a response object" do
+          expect(response).to be_an_instance_of(Glosbe::Response)
+          expect(response).to be_success
+          expect(response.results).to_not be_empty
+        end
+      end
+
+      context "no results", vcr: { cassette_name: "translate_eng_fr_xxxxx" } do
+        let(:response) { language.response("xxxxx") }
+
+        it "creates a response object" do
+          expect(response).to be_an_instance_of(Glosbe::Response)
+          expect(response).to be_success
+          expect(response.results).to be_empty
+        end
+      end
+
+      context "bad request", vcr: { cassette_name: "translate_bad_request" } do
+        let(:response) { language.response("bad") }
+
+        it "creates a response object" do
+          expect(response).to be_an_instance_of(Glosbe::Response)
+          expect(response).to_not be_success
+          expect(response.results).to be_empty
+        end
+      end
     end
   end
 end
