@@ -8,4 +8,5 @@ end
 
 require "glosbe/language"
 require "glosbe/author"
+require "glosbe/result"
 require "glosbe/response"

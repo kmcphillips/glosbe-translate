@@ -30,12 +30,18 @@ class Glosbe::Response
   end
 
   def results
-    success? ? body["tuc"] : []
+    @results ||= begin
+      if success? && body["tuc"].any?
+        body["tuc"].map { |data| Glosbe::Result.new(data, authors: authors) }
+      else
+        []
+      end
+    end
   end
 
   def authors
     @authors ||= begin
-      if found?
+      if success?
         body["authors"].map { |data| Glosbe::Author.new(data[1]) }
       else
         []
