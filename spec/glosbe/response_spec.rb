@@ -74,6 +74,19 @@ RSpec.describe Glosbe::Response do
     end
   end
 
+  describe "#messages" do
+    let(:message) { "oh hello" }
+
+    it "passes through messages" do
+      expect(Glosbe::Response.new({ "messages" => [message] }, ok: true).messages).to eq([message])
+    end
+
+    it "defaults to an empty array" do
+      expect(Glosbe::Response.new({}, ok: true).messages).to eq([])
+    end
+
+  end
+
   describe "#success?" do
     it "is false when ok: is false" do
       expect(Glosbe::Response.new({"result" => "ok"}, ok: false)).to_not be_success

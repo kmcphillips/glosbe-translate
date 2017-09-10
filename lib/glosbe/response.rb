@@ -21,6 +21,10 @@ class Glosbe::Response
     body["phrase"]
   end
 
+  def messages
+    body["messages"] || []
+  end
+
   def success?
     ok? && body["result"] == "ok"
   end
