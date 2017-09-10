@@ -44,6 +44,10 @@ RSpec.describe Glosbe::Result do
       it "has an empty set of meanings" do
         expect(result.meanings).to eq([])
       end
+
+      it "handles special characters" do
+        expect(result.phrase).to eq("j'écoute")
+      end
     end
   end
 end
