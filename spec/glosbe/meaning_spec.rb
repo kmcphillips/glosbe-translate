@@ -8,7 +8,7 @@ RSpec.describe Glosbe::Meaning do
   describe "#initialize" do
     it "extracts the language and text" do
       expect(meaning.language).to eq("en")
-      expect(meaning.text).to eq("&quot;Hello!&quot; or an equivalent greeting.")
+      expect(meaning.text).to eq("\"Hello!\" or an equivalent greeting.")
     end
   end
 end

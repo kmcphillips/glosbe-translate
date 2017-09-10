@@ -2,6 +2,7 @@
 require "glosbe/version"
 
 require "httparty"
+require "cgi"
 
 module Glosbe
 end
