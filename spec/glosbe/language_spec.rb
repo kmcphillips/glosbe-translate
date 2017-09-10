@@ -42,21 +42,29 @@ RSpec.describe Glosbe::Language do
 
   describe "#from" do
     it "converts from symbol" do
-      expect(Glosbe::Language.new(from: :eng, to: :fr).from).to eq("eng")
+      expect(Glosbe::Language.new(from: :en, to: :fr).from).to eq("en")
     end
 
     it "accepts the string" do
       expect(Glosbe::Language.new(from: "fr", to: "nld").from).to eq("fr")
     end
+
+    it "converts from symbol and shortened code" do
+      expect(Glosbe::Language.new(from: :dut, to: :fr).from).to eq("nl")
+    end
   end
 
   describe "#to" do
     it "converts from symbol" do
-      expect(Glosbe::Language.new(from: :fr, to: :eng).to).to eq("eng")
+      expect(Glosbe::Language.new(from: :fr, to: :en).to).to eq("en")
     end
 
     it "accepts the string" do
       expect(Glosbe::Language.new(from: "nld", to: "fr").to).to eq("fr")
+    end
+
+    it "converts from symbol and shortened code" do
+      expect(Glosbe::Language.new(from: :fr, to: :ger).to).to eq("de")
     end
   end
 
