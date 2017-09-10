@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://glosbe.com/gapi/translate?dest=fr&format=json&from=eng&phrase=bad&pretty=true
+    uri: https://glosbe.com/gapi/translate?dest=fr&format=json&from=en&phrase=bad&pretty=true
     body:
       encoding: US-ASCII
       string: ''

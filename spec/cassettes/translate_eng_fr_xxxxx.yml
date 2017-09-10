@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://glosbe.com/gapi/translate?dest=fr&format=json&from=eng&phrase=xxxxx&pretty=true
+    uri: https://glosbe.com/gapi/translate?dest=fr&format=json&from=en&phrase=xxxxx&pretty=true
     body:
       encoding: US-ASCII
       string: ''
@@ -49,6 +49,6 @@ http_interactions:
           "dest" : "fr",
           "authors" : { }
         }
-    http_version: 
+    http_version:
   recorded_at: Sat, 09 Sep 2017 02:39:26 GMT
 recorded_with: VCR 3.0.3

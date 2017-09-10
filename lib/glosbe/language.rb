@@ -21,8 +21,8 @@ class Glosbe::Language
 
   def query_for(phrase)
     {
-      from: from,
-      dest: to,
+      from: Glosbe::LanguageCode.normalize(from),
+      dest: Glosbe::LanguageCode.normalize(to),
       phrase: phrase,
       format: "json",
       pretty: "true",
@@ -32,7 +32,7 @@ class Glosbe::Language
   def parse_language(value)
     value = value.to_s if value.is_a?(Symbol)
     raise ArgumentError, "Language must be a string or a symbol. Received `#{ value }`." unless value.is_a?(String)
-    raise ArgumentError, "Language must the 2 or 3 character ISO_639-3 code. Received `#{ value }`. "\
+    raise ArgumentError, "Language must the 2 or 3 character ISO-639 code. Received `#{ value }`. "\
       "http://en.wikipedia.org/wiki/List_of_ISO_639-3_codes https://glosbe.com/all-languages" unless (2..3).include?(value.length)
     value
   end
