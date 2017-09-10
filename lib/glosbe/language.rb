@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 class Glosbe::Language
+  class << self
+    def translate(phrase, from:, to:)
+      self.new(from: from, to: to).translate(phrase)
+    end
+  end
+
   attr_reader :from, :to
 
   def initialize(from:, to:)

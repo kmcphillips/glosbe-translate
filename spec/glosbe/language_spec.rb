@@ -144,4 +144,24 @@ RSpec.describe Glosbe::Language do
       end
     end
   end
+
+  describe ".translate" do
+    context "english to french 'hello'", vcr: { cassette_name: "translate_eng_fr_hello" }  do
+      it "translates to 'salut'" do
+        expect(Glosbe::Language.translate("hello", from: :en, to: :fr)).to eq("salut")
+      end
+    end
+
+    context "french to dutch 'enfant'", vcr: { cassette_name: "translate_fr_nl_enfant" }  do
+      it "translates to 'kind'" do
+        expect(Glosbe::Language.translate("enfant", from: :fr, to: :nl)).to eq("kind")
+      end
+    end
+
+    context "without a result found", vcr: { cassette_name: "translate_eng_fr_star" }  do
+      it "returns nil" do
+        expect(Glosbe::Language.translate("*", from: :en, to: :fr)).to be_nil
+      end
+    end
+  end
 end
