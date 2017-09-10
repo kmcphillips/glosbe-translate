@@ -12,6 +12,10 @@ class Glosbe::Language
     Glosbe::Response.new(http.body, ok: http.ok?)
   end
 
+  def translate(phrase)
+    lookup(phrase).translation
+  end
+
   private
 
   def parse_language(value)
