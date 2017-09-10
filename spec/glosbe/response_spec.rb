@@ -14,6 +14,10 @@ RSpec.describe Glosbe::Response do
     Glosbe::Response.new(response_for_cassette("translate_eng_fr_xxxxx"), ok: true)
   end
 
+  let(:response_success_medium_result) do
+    Glosbe::Response.new(response_for_cassette("translate_fr_nl_enfant"), ok: true)
+  end
+
   let(:response_bad_request) do
     Glosbe::Response.new("<html>Oh no!</html>", ok: false)
   end
@@ -170,6 +174,24 @@ RSpec.describe Glosbe::Response do
 
     it "on bad request is an empty array" do
       expect(response_bad_request.authors).to eq([])
+    end
+  end
+
+  describe "#translation" do
+    it "is the most first translated result" do
+      expect(response_success.translation).to eq("salut")
+    end
+
+    it "handles no first translation" do
+      expect(response_no_results.translation).to be_nil
+    end
+
+    it "handles no first phrase in the translation" do
+      expect(response_success_small_result.translation).to be_nil
+    end
+
+    it "handles another translation between non english languages" do
+      expect(response_success_medium_result.translation).to eq("kind")
     end
   end
 

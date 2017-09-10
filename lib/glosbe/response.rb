@@ -52,4 +52,9 @@ class Glosbe::Response
       end
     end
   end
+
+  def translation
+    result = results.find { |result| result.phrase }
+    result.phrase if result
+  end
 end
