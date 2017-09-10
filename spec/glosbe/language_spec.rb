@@ -111,6 +111,17 @@ RSpec.describe Glosbe::Language do
           expect(response.results).to_not be_empty
         end
       end
+
+      context "success medium request", vcr: { cassette_name: "translate_fr_nl_enfant"} do
+        let(:language) { Glosbe::Language.new(from: :fr, to: :nl) }
+        let(:response) { language.lookup("enfant") }
+
+        it "creates a response object" do
+          expect(response).to be_an_instance_of(Glosbe::Response)
+          expect(response).to be_success
+          expect(response.results).to_not be_empty
+        end
+      end
     end
   end
 end
