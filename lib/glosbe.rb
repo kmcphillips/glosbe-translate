@@ -7,6 +7,7 @@ require "cgi"
 module Glosbe
 end
 
+require "glosbe/http"
 require "glosbe/language_code"
 require "glosbe/language"
 require "glosbe/author"

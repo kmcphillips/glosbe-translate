@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 class Glosbe::Language
-  include HTTParty
-  base_uri "https://glosbe.com/gapi"
-
   attr_reader :from, :to
 
   def initialize(from:, to:)
@@ -11,23 +8,11 @@ class Glosbe::Language
   end
 
   def lookup(phrase)
-    http = self.class.get("/translate", query: query_for(phrase))
-    body = http.ok? ? http.parsed_response : nil
-
-    Glosbe::Response.new(body, ok: http.ok?)
+    http = Glosbe::HTTP.new(from: from, to: to, phrase: phrase)
+    Glosbe::Response.new(http.body, ok: http.ok?)
   end
 
   private
-
-  def query_for(phrase)
-    {
-      from: from,
-      dest: to,
-      phrase: phrase,
-      format: "json",
-      pretty: "true",
-    }
-  end
 
   def parse_language(value)
     value = value.to_s if value
