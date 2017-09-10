@@ -10,7 +10,7 @@ class Glosbe::Language
     @to = parse_language(to)
   end
 
-  def response(phrase)
+  def lookup(phrase)
     http = self.class.get("/translate", query: query_for(phrase))
     body = http.ok? ? http.parsed_response : nil
 

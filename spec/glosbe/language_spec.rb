@@ -60,12 +60,12 @@ RSpec.describe Glosbe::Language do
     end
   end
 
-  describe "#response" do
+  describe "#lookup" do
     let(:language) { Glosbe::Language.new(from: :eng, to: :fr) }
 
     context "with HTTP requests and response to /translate" do
       context "success", vcr: { cassette_name: "translate_eng_fr_hello" } do
-        let(:response) { language.response("hello") }
+        let(:response) { language.lookup("hello") }
 
         it "creates a response object" do
           expect(response).to be_an_instance_of(Glosbe::Response)
@@ -75,7 +75,7 @@ RSpec.describe Glosbe::Language do
       end
 
       context "no results", vcr: { cassette_name: "translate_eng_fr_xxxxx" } do
-        let(:response) { language.response("xxxxx") }
+        let(:response) { language.lookup("xxxxx") }
 
         it "creates a response object" do
           expect(response).to be_an_instance_of(Glosbe::Response)
@@ -85,7 +85,7 @@ RSpec.describe Glosbe::Language do
       end
 
       context "bad request", vcr: { cassette_name: "translate_bad_request" } do
-        let(:response) { language.response("bad") }
+        let(:response) { language.lookup("bad") }
 
         it "creates a response object" do
           expect(response).to be_an_instance_of(Glosbe::Response)
@@ -95,7 +95,7 @@ RSpec.describe Glosbe::Language do
       end
 
       context "success small result", vcr: { cassette_name: "translate_eng_fr_star" } do
-        let(:response) { language.response("*") }
+        let(:response) { language.lookup("*") }
 
         it "creates a response object" do
           expect(response).to be_an_instance_of(Glosbe::Response)
