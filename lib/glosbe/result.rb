@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class Glosbe::Result
-  attr_reader :phrase, :language, :authors
+  attr_reader :phrase, :language, :authors, :meanings
 
   def initialize(data, authors: [])
     if data["phrase"]
@@ -10,5 +10,6 @@ class Glosbe::Result
     @authors = authors.select do |author|
       data["authors"].include?(author.id)
     end
+    @meanings = (data["meanings"] || []).map { |meaning| Glosbe::Meaning.new(meaning) }
   end
 end
