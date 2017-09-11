@@ -12,7 +12,7 @@ RSpec.describe Glosbe::HTTP do
       end
 
       it "logs to the global logger" do
-        expect(Glosbe.logger).to receive(:debug)
+        expect(Glosbe.logger).to receive(:debug).exactly(4).times
         http
       end
     end

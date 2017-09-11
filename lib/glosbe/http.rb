@@ -8,6 +8,8 @@ class Glosbe::HTTP
   logger Glosbe.logger, :debug, :curl
 
   def initialize(from:, to:, phrase:)
+    Glosbe.logger.debug("[Glosbe::HTTP] request from=#{from} to=#{to} phrase=#{phrase}")
+
     response = self.class.get("/translate",
       query: {
         from: from,
@@ -17,6 +19,9 @@ class Glosbe::HTTP
         pretty: "true",
       }
     )
+
+    Glosbe.logger.debug("[Glosbe::HTTP] response code=#{response.code}")
+    Glosbe.logger.debug("[Glosbe::HTTP] response body=#{response.body}")
 
     @ok = response.ok?
     @body = response.ok? ? response.parsed_response : nil
