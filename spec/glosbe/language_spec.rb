@@ -173,14 +173,22 @@ RSpec.describe Glosbe::Language do
 
   describe ".translate" do
     context "english to french 'hello'", vcr: { cassette_name: "translate_eng_fr_hello" }  do
-      it "translates to 'salut'" do
+      it "translates to 'salut' with the to: from: syntax" do
         expect(Glosbe::Language.translate("hello", from: :en, to: :fr)).to eq("salut")
+      end
+
+      it "translates to 'salut' with the from: :to syntax" do
+        expect(Glosbe::Language.translate("hello", en: :fr)).to eq("salut")
       end
     end
 
     context "french to dutch 'enfant'", vcr: { cassette_name: "translate_fr_nl_enfant" }  do
-      it "translates to 'kind'" do
+      it "translates to 'kind' with the to: from: syntax" do
         expect(Glosbe::Language.translate("enfant", from: :fr, to: :nl)).to eq("kind")
+      end
+
+      it "translates to 'kind' with the from: :to syntax" do
+        expect(Glosbe::Language.translate("enfant", fr: :nl)).to eq("kind")
       end
     end
 
@@ -188,6 +196,26 @@ RSpec.describe Glosbe::Language do
       it "returns nil" do
         expect(Glosbe::Language.translate("*", from: :en, to: :fr)).to be_nil
       end
+    end
+
+    it "raises argument ArgumentError with missing" do
+      expect { Glosbe::Language.translate("test", from: :en) }.to raise_error(ArgumentError)
+    end
+
+    it "raises argument ArgumentError with extra params" do
+      expect { Glosbe::Language.translate("test", from: :en, to: :nl, some: :thing) }.to raise_error(ArgumentError)
+    end
+
+    it "raises argument ArgumentError with extra params" do
+      expect { Glosbe::Language.translate("test", en: :fr, some: :thing) }.to raise_error(ArgumentError)
+    end
+
+    it "raises argument ArgumentError with nonsense params" do
+      expect { Glosbe::Language.translate("test", "what") }.to raise_error(ArgumentError)
+    end
+
+    it "raises argument ArgumentError with no params" do
+      expect { Glosbe::Language.translate("test") }.to raise_error(ArgumentError)
     end
   end
 end

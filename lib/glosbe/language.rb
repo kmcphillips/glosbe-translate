@@ -1,8 +1,23 @@
 # frozen_string_literal: true
 class Glosbe::Language
   class << self
-    def translate(phrase, from:, to:)
+    def translate(phrase, args)
+      from, to = extract_lanuages(args)
       self.new(from: from, to: to).translate(phrase)
+    end
+
+    private
+
+    def extract_lanuages(args)
+      raise ArgumentError, "expected hash but received #{args.class}" unless args.is_a?(Hash)
+
+      if args.keys.sort == [:from, :to]
+        [args[:from], args[:to]]
+      elsif args.size == 1
+        args.first
+      else
+        raise ArgumentError, "languages must be specified as `from: :aaa, to: :bbb` or `aaa: :bbb`"
+      end
     end
   end
 
