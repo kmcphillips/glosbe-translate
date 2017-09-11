@@ -6,6 +6,16 @@ class Glosbe::Language
       self.new(from: from, to: to).translate(phrase)
     end
 
+    def definitions(phrase, args)
+      from, to = extract_lanuages(args)
+      self.new(from: from, to: to).definitions(phrase)
+    end
+
+    def translated_definitions(phrase, args)
+      from, to = extract_lanuages(args)
+      self.new(from: from, to: to).translated_definitions(phrase)
+    end
+
     private
 
     def extract_lanuages(args)

@@ -126,19 +126,19 @@ RSpec.describe Glosbe::Language do
   end
 
   describe "#translate" do
-    context "english to french 'hello'", vcr: { cassette_name: "translate_eng_fr_hello" }  do
+    context "english to french 'hello'", vcr: { cassette_name: "translate_eng_fr_hello" } do
       it "translates to 'salut'" do
         expect(Glosbe::Language.new(from: :en, to: :fr).translate("hello")).to eq("salut")
       end
     end
 
-    context "french to dutch 'enfant'", vcr: { cassette_name: "translate_fr_nl_enfant" }  do
+    context "french to dutch 'enfant'", vcr: { cassette_name: "translate_fr_nl_enfant" } do
       it "translates to 'kind'" do
         expect(Glosbe::Language.new(from: :fr, to: :nl).translate("enfant")).to eq("kind")
       end
     end
 
-    context "without a result found", vcr: { cassette_name: "translate_eng_fr_star" }  do
+    context "without a result found", vcr: { cassette_name: "translate_eng_fr_star" } do
       it "returns nil" do
         expect(Glosbe::Language.new(from: :en, to: :fr).translate("*")).to be_nil
       end
@@ -146,7 +146,7 @@ RSpec.describe Glosbe::Language do
   end
 
   describe "#definitions" do
-    context "french to dutch 'enfant'", vcr: { cassette_name: "translate_fr_nl_enfant" }  do
+    context "french to dutch 'enfant'", vcr: { cassette_name: "translate_fr_nl_enfant" } do
       let(:language) { Glosbe::Language.new(from: :fr, to: :nl) }
       let(:definitions) { language.definitions("enfant") }
 
@@ -159,7 +159,7 @@ RSpec.describe Glosbe::Language do
   end
 
   describe "#translated_definitions" do
-    context "english to french 'hello'", vcr: { cassette_name: "translate_eng_fr_hello" }  do
+    context "english to french 'hello'", vcr: { cassette_name: "translate_eng_fr_hello" } do
       let(:language) { Glosbe::Language.new(from: :en, to: :fr) }
       let(:definitions) { language.translated_definitions("hello") }
 
@@ -172,7 +172,7 @@ RSpec.describe Glosbe::Language do
   end
 
   describe ".translate" do
-    context "english to french 'hello'", vcr: { cassette_name: "translate_eng_fr_hello" }  do
+    context "english to french 'hello'", vcr: { cassette_name: "translate_eng_fr_hello" } do
       it "translates to 'salut' with the to: from: syntax" do
         expect(Glosbe::Language.translate("hello", from: :en, to: :fr)).to eq("salut")
       end
@@ -182,7 +182,7 @@ RSpec.describe Glosbe::Language do
       end
     end
 
-    context "french to dutch 'enfant'", vcr: { cassette_name: "translate_fr_nl_enfant" }  do
+    context "french to dutch 'enfant'", vcr: { cassette_name: "translate_fr_nl_enfant" } do
       it "translates to 'kind' with the to: from: syntax" do
         expect(Glosbe::Language.translate("enfant", from: :fr, to: :nl)).to eq("kind")
       end
@@ -192,7 +192,7 @@ RSpec.describe Glosbe::Language do
       end
     end
 
-    context "without a result found", vcr: { cassette_name: "translate_eng_fr_star" }  do
+    context "without a result found", vcr: { cassette_name: "translate_eng_fr_star" } do
       it "returns nil" do
         expect(Glosbe::Language.translate("*", from: :en, to: :fr)).to be_nil
       end
@@ -216,6 +216,78 @@ RSpec.describe Glosbe::Language do
 
     it "raises argument ArgumentError with no params" do
       expect { Glosbe::Language.translate("test") }.to raise_error(ArgumentError)
+    end
+  end
+
+  describe ".definitions" do
+    context "english to french 'hello'", vcr: { cassette_name: "translate_eng_fr_hello" } do
+      it "finds the definitions with the to: from: syntax" do
+        definitions = Glosbe::Language.definitions("hello", from: :en, to: :fr)
+        expect(definitions).to be_an_instance_of(Array)
+        expect(definitions.first).to eq("greeting")
+      end
+
+      it "finds the definitions with the from: :to syntax" do
+        definitions = Glosbe::Language.definitions("hello", en: :fr)
+        expect(definitions).to be_an_instance_of(Array)
+        expect(definitions.last).to eq("<i>An expression of puzzlement or discovery.</i>")
+      end
+    end
+
+    it "raises argument ArgumentError with missing" do
+      expect { Glosbe::Language.definitions("test", from: :en) }.to raise_error(ArgumentError)
+    end
+
+    it "raises argument ArgumentError with extra params" do
+      expect { Glosbe::Language.definitions("test", from: :en, to: :nl, some: :thing) }.to raise_error(ArgumentError)
+    end
+
+    it "raises argument ArgumentError with extra params" do
+      expect { Glosbe::Language.definitions("test", en: :fr, some: :thing) }.to raise_error(ArgumentError)
+    end
+
+    it "raises argument ArgumentError with nonsense params" do
+      expect { Glosbe::Language.definitions("test", "what") }.to raise_error(ArgumentError)
+    end
+
+    it "raises argument ArgumentError with no params" do
+      expect { Glosbe::Language.definitions("test") }.to raise_error(ArgumentError)
+    end
+  end
+
+  describe ".translated_definitions" do
+    context "french to dutch 'enfant'", vcr: { cassette_name: "translate_fr_nl_enfant" }  do
+      it "finds the translated definitions with the to: from: syntax" do
+        definitions = Glosbe::Language.translated_definitions("enfant", from: :fr, to: :nl)
+        expect(definitions).to be_an_instance_of(Array)
+        expect(definitions.first).to eq("Een persoon die nog niet aan de puberteit begonnen is.")
+      end
+
+      it "finds the translated definitions with the from: :to syntax" do
+        definitions = Glosbe::Language.translated_definitions("enfant", fr: :nl)
+        expect(definitions).to be_an_instance_of(Array)
+        expect(definitions.last).to eq("Een entiteit die specifieker is gedefinieerd.")
+      end
+    end
+
+    it "raises argument ArgumentError with missing" do
+      expect { Glosbe::Language.translated_definitions("test", from: :en) }.to raise_error(ArgumentError)
+    end
+
+    it "raises argument ArgumentError with extra params" do
+      expect { Glosbe::Language.translated_definitions("test", from: :en, to: :nl, some: :thing) }.to raise_error(ArgumentError)
+    end
+
+    it "raises argument ArgumentError with extra params" do
+      expect { Glosbe::Language.translated_definitions("test", en: :fr, some: :thing) }.to raise_error(ArgumentError)
+    end
+
+    it "raises argument ArgumentError with nonsense params" do
+      expect { Glosbe::Language.translated_definitions("test", "what") }.to raise_error(ArgumentError)
+    end
+
+    it "raises argument ArgumentError with no params" do
+      expect { Glosbe::Language.translated_definitions("test") }.to raise_error(ArgumentError)
     end
   end
 end
