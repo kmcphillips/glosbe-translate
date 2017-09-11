@@ -4,6 +4,6 @@ class Glosbe::Meaning
 
   def initialize(data)
     @language = data["language"]
-    @text = CGI.unescapeHTML(data["text"]) if data["text"]
+    @text = data["text"] ? CGI.unescapeHTML(data["text"]) : nil
   end
 end
