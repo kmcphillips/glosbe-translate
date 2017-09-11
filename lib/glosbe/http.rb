@@ -5,6 +5,7 @@ class Glosbe::HTTP
 
   include HTTParty
   base_uri "https://glosbe.com/gapi"
+  logger Glosbe.logger, :debug, :curl
 
   def initialize(from:, to:, phrase:)
     response = self.class.get("/translate",

@@ -10,6 +10,11 @@ RSpec.describe Glosbe::HTTP do
         expect(http).to be_ok
         expect(http.body).to be_an_instance_of(Hash)
       end
+
+      it "logs to the global logger" do
+        expect(Glosbe.logger).to receive(:debug)
+        http
+      end
     end
 
     context "bad request", vcr: { cassette_name: "translate_bad_request" } do

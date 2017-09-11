@@ -3,8 +3,12 @@ require "glosbe/version"
 
 require "httparty"
 require "cgi"
+require "logger"
 
 module Glosbe
+  extend self
+  attr_accessor :logger
+  self.logger = Logger.new(nil)
 end
 
 require "glosbe/http"
