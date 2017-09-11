@@ -145,6 +145,32 @@ RSpec.describe Glosbe::Language do
     end
   end
 
+  describe "#definitions" do
+    context "french to dutch 'enfant'", vcr: { cassette_name: "translate_fr_nl_enfant" }  do
+      let(:language) { Glosbe::Language.new(from: :fr, to: :nl) }
+      let(:definitions) { language.definitions("enfant") }
+
+      it "returns the definitions in the :from language" do
+        expect(definitions).to be_an_instance_of(Array)
+        expect(definitions.length).to eq(4)
+        expect(definitions.first).to eq("Entité ayant un sens plus restreint.")
+      end
+    end
+  end
+
+  describe "#translated_definitions" do
+    context "english to french 'hello'", vcr: { cassette_name: "translate_eng_fr_hello" }  do
+      let(:language) { Glosbe::Language.new(from: :en, to: :fr) }
+      let(:definitions) { language.translated_definitions("hello") }
+
+      it "returns the definitions in the :from language" do
+        expect(definitions).to be_an_instance_of(Array)
+        expect(definitions.length).to eq(6)
+        expect(definitions.first).to eq("Expression de salutation utilisée entre deux personnes ou plus qui se rencontrent.")
+      end
+    end
+  end
+
   describe ".translate" do
     context "english to french 'hello'", vcr: { cassette_name: "translate_eng_fr_hello" }  do
       it "translates to 'salut'" do

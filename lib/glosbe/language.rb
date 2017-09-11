@@ -22,6 +22,14 @@ class Glosbe::Language
     lookup(phrase).translation
   end
 
+  def definitions(phrase)
+    lookup(phrase).definitions
+  end
+
+  def translated_definitions(phrase)
+    lookup(phrase).translated_definitions
+  end
+
   private
 
   def parse_language(value)
