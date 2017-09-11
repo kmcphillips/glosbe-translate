@@ -195,6 +195,31 @@ RSpec.describe Glosbe::Response do
     end
   end
 
+  describe "#definitions" do
+    it "extracts the definitions in the :from language" do
+      expect(response_success.definitions).to be_an_instance_of(Array)
+      expect(response_success.definitions.length).to eq(29)
+      expect(response_success.definitions.first).to eq("greeting")
+    end
+
+    it "handles bad results" do
+      expect(response_success_small_result.definitions.length).to eq(2)
+      expect(response_success_small_result.definitions.last).to eq("star")
+    end
+  end
+
+  describe "#translated_definitions" do
+    it "extracts the definitions" do
+      expect(response_success.translated_definitions).to be_an_instance_of(Array)
+      expect(response_success.translated_definitions.length).to eq(6)
+      expect(response_success.translated_definitions.first).to eq("Expression de salutation utilisée entre deux personnes ou plus qui se rencontrent.")
+    end
+
+    it "handles bad results" do
+      expect(response_bad_request.translated_definitions).to eq([])
+    end
+  end
+
   context "real data and content" do
     it "should check the data end to end for a definition and lookup"
   end

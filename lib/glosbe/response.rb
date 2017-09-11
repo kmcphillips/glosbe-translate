@@ -57,4 +57,22 @@ class Glosbe::Response
     result = results.find { |result| result.phrase }
     result.phrase if result
   end
+
+  def definitions
+    @definitions ||= extract_definitions_for(from)
+  end
+
+  def translated_definitions
+    @translated_definitions ||= extract_definitions_for(to)
+  end
+
+  private
+
+  def extract_definitions_for(language)
+    results.map do |result|
+      result.meanings.map do |meaning|
+        meaning.text if meaning.language == language
+      end
+    end.flatten.compact
+  end
 end
