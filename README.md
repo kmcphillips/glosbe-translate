@@ -42,7 +42,7 @@ Glosbe::Language.translate("please", from: :en, to: :nl)
 
 Fetch an array of definitions in the `from` language:
 ```ruby
-Glosbe::Language.definitions("pineapple", from: :en, to: :fr)
+Glosbe::Language.define("pineapple", from: :en, to: :fr)
 => ["fruit",
  "Large sweet fleshy tropical fruit with a terminal tuft of stiff leaves.",
  "plant"]
@@ -50,7 +50,7 @@ Glosbe::Language.definitions("pineapple", from: :en, to: :fr)
 
 Fetch an array of definitions in the `to` language:
 ```ruby
-Glosbe::Language.translated_definitions("pie", from: :en, to: :fr)
+Glosbe::Language.translated_define("pie", from: :en, to: :fr)
 => ["Plat constitué de viandes, fruits ou autres nourriture cuits dans ou sur une pâte.",
  "Plat, préparation à base de pâte aplatie au rouleau, et d’une garniture salée ou sucrée"]
 ```
@@ -80,14 +80,14 @@ language.translate("please", from: :en, to: :nl)
 ```
 
 ```ruby
-language.definitions("pineapple", from: :en, to: :fr)
+language.define("pineapple", from: :en, to: :fr)
 => ["fruit",
  "Large sweet fleshy tropical fruit with a terminal tuft of stiff leaves.",
  "plant"]
 ```
 
 ```ruby
-language.translated_definitions("pie", from: :en, to: :fr)
+language.translated_define("pie", from: :en, to: :fr)
 => ["Plat constitué de viandes, fruits ou autres nourriture cuits dans ou sur une pâte.",
  "Plat, préparation à base de pâte aplatie au rouleau, et d’une garniture salée ou sucrée"]
 ```
@@ -135,8 +135,8 @@ Convenience methods extract the same three functions and return values repeated 
 
 ```ruby
 response.translation
-response.definitions
-response.translated_definitions
+response.define
+response.translated_define
 ```
 
 The raw results matching the structure of the API are available here.

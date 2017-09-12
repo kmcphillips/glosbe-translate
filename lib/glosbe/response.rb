@@ -58,12 +58,12 @@ class Glosbe::Response
     result.phrase if result
   end
 
-  def definitions
-    @definitions ||= extract_definitions_for(from)
+  def define
+    @define ||= extract_definitions_for(from)
   end
 
-  def translated_definitions
-    @translated_definitions ||= extract_definitions_for(to)
+  def translated_define
+    @translated_define ||= extract_definitions_for(to)
   end
 
   private

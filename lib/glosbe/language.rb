@@ -6,14 +6,14 @@ class Glosbe::Language
       self.new(from: from, to: to).translate(phrase)
     end
 
-    def definitions(phrase, args)
+    def define(phrase, args)
       from, to = extract_lanuages(args)
-      self.new(from: from, to: to).definitions(phrase)
+      self.new(from: from, to: to).define(phrase)
     end
 
-    def translated_definitions(phrase, args)
+    def translated_define(phrase, args)
       from, to = extract_lanuages(args)
-      self.new(from: from, to: to).translated_definitions(phrase)
+      self.new(from: from, to: to).translated_define(phrase)
     end
 
     private
@@ -47,12 +47,12 @@ class Glosbe::Language
     lookup(phrase).translation
   end
 
-  def definitions(phrase)
-    lookup(phrase).definitions
+  def define(phrase)
+    lookup(phrase).define
   end
 
-  def translated_definitions(phrase)
-    lookup(phrase).translated_definitions
+  def translated_define(phrase)
+    lookup(phrase).translated_define
   end
 
   private
