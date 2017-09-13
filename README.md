@@ -184,6 +184,16 @@ meaning.language
 None of these fields are guaranteed to exist. Though they will return a string or `nil` for value fields, and will always return an empty array for collection fields.
 
 
+## Logging
+
+Logging is defaulted to `nil`, but can be passed any `Logger` object to debug network requests.
+
+```ruby
+Glosbe.logger = Logger.new("glosbe.log")
+Glosbe.logger = Rails.logger
+```
+
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
