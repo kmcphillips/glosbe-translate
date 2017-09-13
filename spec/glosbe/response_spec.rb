@@ -218,7 +218,13 @@ RSpec.describe Glosbe::Response do
     end
   end
 
-  context "real data and content" do
-    it "should check the data end to end for a definition and lookup"
+  context "using english to french 'hello'", vcr: { cassette_name: "translate_eng_fr_hello" } do
+    let(:response) { Glosbe::Language.new(from: :en, to: :fr).lookup("hello") }
+
+    it "extracts the expected authors" do
+      expect(response.authors).to be_an_instance_of(Array)
+      expect(response.authors.length).to eq(11)
+      expect(response.authors.first.name).to eq("Termium")
+    end
   end
 end
