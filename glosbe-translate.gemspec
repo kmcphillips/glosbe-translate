@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Kevin McPhillips"]
   spec.email         = ["github@kevinmcphillips.ca"]
 
-  spec.summary       = %q{Use https://glosbe.com to translate words and get their definitions}
+  spec.summary       = %q{Use https://glosbe.com to translate and define words and phrases}
   spec.description   = %q{Wrapper around the JSON api on the Glosbe online multilingual dictionary. Return definitions and translations.}
   spec.homepage      = "https://github.com/kmcphillips/glosbe-translate"
   spec.license       = "MIT"
