@@ -75,19 +75,19 @@ Symbols and strings are accepted, and the language code will be converted to mat
 The same three methods are available to translate and define a phrase using this object:
 
 ```ruby
-language.translate("please", from: :en, to: :nl)
+language.translate("please")
 => "alstublieft"
 ```
 
 ```ruby
-language.define("pineapple", from: :en, to: :fr)
+language.define("pineapple")
 => ["fruit",
  "Large sweet fleshy tropical fruit with a terminal tuft of stiff leaves.",
  "plant"]
 ```
 
 ```ruby
-language.translated_define("pie", from: :en, to: :fr)
+language.translated_define("pie")
 => ["Plat constitué de viandes, fruits ou autres nourriture cuits dans ou sur une pâte.",
  "Plat, préparation à base de pâte aplatie au rouleau, et d’une garniture salée ou sucrée"]
 ```
