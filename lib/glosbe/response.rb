@@ -3,7 +3,7 @@ class Glosbe::Response
   attr_reader :ok, :body
 
   def initialize(body, ok:)
-    @body = body
+    @body = body || {}
     @ok = !!ok
   end
 

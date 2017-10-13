@@ -34,6 +34,10 @@ RSpec.describe Glosbe::Response do
       expect(response.body).to eq(body)
       expect(response.ok).to eq(true)
     end
+
+    it "has a default value for the body" do
+      expect(Glosbe::Response.new(nil, ok: "yes").body).to eq({})
+    end
   end
 
   describe "#from" do
