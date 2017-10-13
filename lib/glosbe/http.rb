@@ -24,6 +24,6 @@ class Glosbe::HTTP
     Glosbe.logger.debug("[Glosbe::HTTP] response body=#{response.body}")
 
     @ok = response.ok?
-    @body = response.ok? ? response.parsed_response : nil
+    @body = response.ok? || response.too_many_requests? ? response.parsed_response : nil
   end
 end

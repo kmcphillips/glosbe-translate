@@ -22,6 +22,10 @@ RSpec.describe Glosbe::Response do
     Glosbe::Response.new("<html>Oh no!</html>", ok: false)
   end
 
+  let(:response_too_many_requests) do
+    Glosbe::Response.new(response_for_cassette("translate_too_many_requests"), ok: false)
+  end
+
   describe "#initialize" do
     let(:body) { { key: "value" } }
     let(:response) { Glosbe::Response.new(body, ok: "yes") }
@@ -82,11 +86,11 @@ RSpec.describe Glosbe::Response do
     let(:message) { "oh hello" }
 
     it "passes through messages" do
-      expect(Glosbe::Response.new({ "messages" => [message] }, ok: true).messages).to eq([message])
+      expect(Glosbe::Response.new({ "message" => message }, ok: true).message).to eq(message)
     end
 
     it "defaults to an empty array" do
-      expect(Glosbe::Response.new({}, ok: true).messages).to eq([])
+      expect(Glosbe::Response.new({}, ok: true).message).to be_nil
     end
 
   end
@@ -116,6 +120,10 @@ RSpec.describe Glosbe::Response do
       it "on bad request is false" do
         expect(response_bad_request).to_not be_success
       end
+
+      it "on too many requests is false" do
+        expect(response_too_many_requests).to_not be_success
+      end
     end
   end
 
@@ -130,6 +138,28 @@ RSpec.describe Glosbe::Response do
 
     it "on bad request is false" do
       expect(response_bad_request).to_not be_found
+    end
+
+    it "on too many requests is false" do
+      expect(response_too_many_requests).to_not be_found
+    end
+  end
+
+  describe "#message" do
+    it "on success is empty" do
+      expect(response_success.message).to be_nil
+    end
+
+    it "on no results is empty" do
+      expect(response_no_results.message).to be_nil
+    end
+
+    it "on bad request is empty" do
+      expect(response_bad_request.message).to be_nil
+    end
+
+    it "on too many requests has the error message" do
+      expect(response_too_many_requests.message).to eq("Too many queries, your IP has been blocked")
     end
   end
 

@@ -125,10 +125,10 @@ response.phrase
 => "coffee"
 ```
 
-There can sometimes be messages returned from the server. This is particularly interesting for rate limiting warnings:
+There can sometimes a message returned from the server. This is particularly interesting for rate limiting warnings:
 ```ruby
-response.messages
-=> []
+response.message
+=> "Too many queries, your IP has been blocked"
 ```
 
 Convenience methods extract the same three functions and return values repeated above:

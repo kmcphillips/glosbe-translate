@@ -21,8 +21,8 @@ class Glosbe::Response
     body["phrase"]
   end
 
-  def messages
-    body["messages"] || []
+  def message
+    body["message"]
   end
 
   def success?
